@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ -z {WDY_XBUILD_ROOT} ]; then
+	echo "WDY_XBUILD_ROOT not set!"
+	exit 1
+fi
+
+DIR=$(readlink -f $(dirname $0))
+
+${WDY_XBUILD_ROOT}/bin/cmake-android-build "${DIR}" -DZLIB_COMPAT=TRUE
+
+
