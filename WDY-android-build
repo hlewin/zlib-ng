@@ -5,8 +5,12 @@ if [ -z {WDY_XBUILD_ROOT} ]; then
 	exit 1
 fi
 
+set -e
+
 DIR=$(readlink -f $(dirname $0))
 
 ${WDY_XBUILD_ROOT}/bin/cmake-android-build "${DIR}" -DZLIB_COMPAT=TRUE
+
+${WDY_XBUILD_ROOT}/bin/prepare_libraries.sh
 
 
