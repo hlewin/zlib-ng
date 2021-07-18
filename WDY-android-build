@@ -9,7 +9,7 @@ set -e
 
 DIR=$(readlink -f $(dirname $0))
 
-${WDY_XBUILD_ROOT}/bin/cmake-android-build "${DIR}" -DZLIB_COMPAT=TRUE
+${WDY_XBUILD_ROOT}/bin/cmake-android-build "${DIR}" -DZLIB_COMPAT=TRUE -DBUILD_SHARED_LIBS=YES
 
 ${WDY_XBUILD_ROOT}/bin/prepare_libraries.sh
 
