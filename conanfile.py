@@ -10,7 +10,7 @@ class ZlibNgConan(ConanFile):
     version = "2.0.6"
     
     description = "zlib data compression library for the next generation systems"
-    url = "https://github.com/conan-io/conan-center-index"
+    url = "https://gitlab.worldiety.net/worldiety/customer/wdy/libriety/cpp/forks"
     homepage = "https://github.com/zlib-ng/zlib-ng/"
     license ="Zlib"
     topics = ("zlib", "compression")
