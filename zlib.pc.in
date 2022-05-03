@@ -1,8 +1,8 @@
-prefix=@prefix@
-exec_prefix=@exec_prefix@
-libdir=@libdir@
-sharedlibdir=@sharedlibdir@
-includedir=@includedir@
+prefix=${pcfiledir}/../..
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+sharedlibdir=${prefix}/lib
+includedir=${prefix}/include
 
 Name: zlib@SUFFIX@
 Description: zlib-ng compression library
