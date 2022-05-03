@@ -75,7 +75,7 @@ class ZlibNgConan(ConanFile):
     def package_info(self):
         #FIXME: CMake targets are https://github.com/zlib-ng/zlib-ng/blob/29fd4672a2279a0368be936d7cd44d013d009fae/CMakeLists.txt#L914
         suffix = "" if self.options.zlib_compat else "-ng"
-        self.cpp_info.names["pkg_config"] = "zlib" + suffix
+#        self.cpp_info.names["pkg_config"] = "zlib" + suffix
         if self.settings.os == "Windows":
             static_flag = "static" if not self.options.shared and tools.Version(self.version) >= "2.0.5" else ""
             build_type = "d" if self.settings.build_type == "Debug" else ""

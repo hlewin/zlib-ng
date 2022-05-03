@@ -6,7 +6,7 @@ else()
 endif()
 message(STATUS "Using CMake version ${CMAKE_VERSION}")
 
-set(CMAKE_MACOSX_RPATH 1)
+# set(CMAKE_MACOSX_RPATH 1)
 
 # If not specified on the command line, enable C99 as the default
 # Configuration items that affect the global compiler environment standards
@@ -1060,7 +1060,7 @@ if(NOT DEFINED BUILD_SHARED_LIBS OR BUILD_SHARED_LIBS)
                 "-Wl,--version-script,\"${CMAKE_CURRENT_SOURCE_DIR}/zlib${SUFFIX}.map\"")
         else()
             # Match configure/make's behavior (i.e. don't use @rpath on mac).
-            set_target_properties(zlib PROPERTIES INSTALL_NAME_DIR "${LIB_INSTALL_DIR}")
+            # set_target_properties(zlib PROPERTIES INSTALL_NAME_DIR "${LIB_INSTALL_DIR}")
         endif()
     endif()
     if(MSYS OR CYGWIN)
