@@ -72,22 +72,3 @@ class ZlibNgConan(ConanFile):
         cmake = self._configure_cmake()
         cmake.install()
 
-    def package_info(self):
-        #FIXME: CMake targets are https://github.com/zlib-ng/zlib-ng/blob/29fd4672a2279a0368be936d7cd44d013d009fae/CMakeLists.txt#L914
-        suffix = "" if self.options.zlib_compat else "-ng"
-#        self.cpp_info.names["pkg_config"] = "zlib" + suffix
-        if self.settings.os == "Windows":
-            static_flag = "static" if not self.options.shared and tools.Version(self.version) >= "2.0.5" else ""
-            build_type = "d" if self.settings.build_type == "Debug" else ""
-            self.cpp_info.libs = ["zlib{}{}{}".format(static_flag, suffix, build_type)]
-        else:
-            self.cpp_info.libs = ["z{}".format(suffix)]
-        if self.options.zlib_compat:
-            self.cpp_info.defines.append("ZLIB_COMPAT")
-        if self.options.with_gzfileop:
-            self.cpp_info.defines.append("WITH_GZFILEOP")
-        if not self.options.with_new_strategies:
-            self.cpp_info.defines.extend(["NO_QUICK_STRATEGY", "NO_MEDIUM_STRATEGY"])
-        pkg_config_dir = os.path.join(self.package_folder, "lib/pkgconfig")
-        self.output.info(f"Adding {pkg_config_dir} to PKG_CONFIG_PATH")
-
