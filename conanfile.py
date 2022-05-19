@@ -61,6 +61,12 @@ class ZlibNgConan(ConanFile):
         self._cmake.definitions["WITH_NEW_STRATEGIES"] = self.options.with_new_strategies
         self._cmake.definitions["WITH_NATIVE_INSTRUCTIONS"] = self.options.with_native_instructions
 
+        self._cmake.definitions["CMAKE_POSITION_INDEPENDENT_CODE"] = self.options.get_safe("fPIC", True)
+        self._cmake.definitions["CMAKE_INSTALL_RPATH_USE_LINK_PATH"] = True
+        debug_prefix_mapping = '-ffile-prefix-map=' + os.path.abspath(self.source_folder) + '=' + self.name
+        self._cmake.definitions["CMAKE_C_FLAGS"] = debug_prefix_mapping
+        self._cmake.definitions["CMAKE_CXX_FLAGS"] = debug_prefix_mapping
+
         self._cmake.configure()
         return self._cmake
 
