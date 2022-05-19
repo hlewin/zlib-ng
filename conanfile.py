@@ -33,6 +33,7 @@ class ZlibNgConan(ConanFile):
                        "with_native_instructions": False,
                        "fPIC": True}
     _cmake = None
+    provides = "zlib"
 
 
     def config_options(self):
