@@ -32,8 +32,10 @@ class ZlibNgConan(ConanFile):
                        "with_new_strategies": True,
                        "with_native_instructions": False,
                        "fPIC": True}
-    _cmake = None
-    provides = "zlib"
+
+    no_copy_source = True
+    python_requires = "wdyConanHelper/[]"
+    python_requires_extend = "wdyConanHelper.ConanCMake"
 
 
     def config_options(self):
@@ -51,31 +53,12 @@ class ZlibNgConan(ConanFile):
         if self.options.zlib_compat and not self.options.with_gzfileop:
             raise ConanInvalidConfiguration("The option 'with_gzfileop' must be True when 'zlib_compat' is True.")
 
-    def _configure_cmake(self):
-        if not self._cmake:
-            self._cmake = CMake(self)
-        self._cmake.definitions["ZLIB_ENABLE_TESTS"] = False
-        self._cmake.definitions["ZLIB_COMPAT"] = self.options.zlib_compat
-        self._cmake.definitions["WITH_GZFILEOP"] = self.options.with_gzfileop
-        self._cmake.definitions["WITH_OPTIM"] = self.options.with_optim
-        self._cmake.definitions["WITH_NEW_STRATEGIES"] = self.options.with_new_strategies
-        self._cmake.definitions["WITH_NATIVE_INSTRUCTIONS"] = self.options.with_native_instructions
-
-        self._cmake.definitions["CMAKE_POSITION_INDEPENDENT_CODE"] = self.options.get_safe("fPIC", True)
-        self._cmake.definitions["CMAKE_INSTALL_RPATH_USE_LINK_PATH"] = True
-        debug_prefix_mapping = '-ffile-prefix-map=' + os.path.abspath(self.source_folder) + '=' + self.name
-        self._cmake.definitions["CMAKE_C_FLAGS"] = debug_prefix_mapping
-        self._cmake.definitions["CMAKE_CXX_FLAGS"] = debug_prefix_mapping
-
-        self._cmake.configure()
-        return self._cmake
-
-    def build(self):
-        cmake = self._configure_cmake()
-        cmake.build()
-
-    def package(self):
-        self.copy("LICENSE.md", dst="licenses")
-        cmake = self._configure_cmake()
-        cmake.install()
-
+    def cmake_definitions(self):
+        return {
+            "ZLIB_ENABLE_TESTS": False,
+            "ZLIB_COMPAT": self.options.zlib_compat,
+            "WITH_GZFILEOP": self.options.with_gzfileop,
+            "WITH_OPTIM": self.options.with_optim,
+            "WITH_NEW_STRATEGIES": self.options.with_new_strategies,
+            "WITH_NATIVE_INSTRUCTIONS": self.options.with_native_instructions
+        }
