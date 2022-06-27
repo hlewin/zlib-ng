@@ -37,18 +37,6 @@ class ZlibNgConan(ConanFile):
     python_requires = "wdyConanHelper/[]"
     python_requires_extend = "wdyConanHelper.ConanCMake"
 
-
-    def config_options(self):
-        if self.settings.os == "Windows":
-            del self.options.fPIC
-
-    def configure(self):
-        if self.options.shared:
-            del self.options.fPIC
-        del self.settings.compiler.libcxx
-        del self.settings.compiler.cppstd
-
-
     def validate(self):
         if self.options.zlib_compat and not self.options.with_gzfileop:
             raise ConanInvalidConfiguration("The option 'with_gzfileop' must be True when 'zlib_compat' is True.")
