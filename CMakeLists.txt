@@ -955,7 +955,7 @@ set(ZLIB_GZFILE_SRCS
     gzread.c
     gzwrite.c
 )
-
+if(False)
 if(NOT MINGW AND NOT MSYS AND NOT CYGWIN)
     set(ZLIB_DLL_SRCS
         win32/zlib${SUFFIX}1.rc # If present will override custom build rule below.
@@ -977,7 +977,7 @@ if(MINGW OR MSYS OR CYGWIN)
             -i ${CMAKE_CURRENT_SOURCE_DIR}/win32/zlib${SUFFIX}1.rc)
     set(ZLIB_DLL_SRCS ${CMAKE_CURRENT_BINARY_DIR}/zlib1rc.obj)
 endif()
-
+endif()
 set(ZLIB_ALL_SRCS ${ZLIB_SRCS} ${ZLIB_ARCH_HDRS} ${ZLIB_ARCH_SRCS} ${ZLIB_DLL_SRCS}
     ${ZLIB_PUBLIC_HDRS} ${ZLIB_PRIVATE_HDRS})
 if(WITH_GZFILEOP)
