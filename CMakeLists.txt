@@ -983,7 +983,7 @@ foreach(ZLIB_INSTALL_LIBRARY ${ZLIB_INSTALL_LIBRARIES})
         "$<INSTALL_INTERFACE:include>")
 endforeach()
 
-if(WIN32)
+if(FALSE AND WIN32)
     # Shared library
     if(NOT DEFINED BUILD_SHARED_LIBS OR BUILD_SHARED_LIBS)
         set_target_properties(zlib PROPERTIES OUTPUT_NAME zlib${SUFFIX})
