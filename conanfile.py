@@ -7,7 +7,7 @@ equired_conan_version = ">=1.33.0"
 
 class ZlibNgConan(ConanFile):
     name = "zlib-ng"
-    version = "2.0.6"
+    version = "2.1.2"
     
     description = "zlib data compression library for the next generation systems"
     url = "https://gitlab.worldiety.net/worldiety/customer/wdy/libriety/cpp/forks"
@@ -48,5 +48,8 @@ class ZlibNgConan(ConanFile):
             "WITH_GZFILEOP": self.options.with_gzfileop,
             "WITH_OPTIM": self.options.with_optim,
             "WITH_NEW_STRATEGIES": self.options.with_new_strategies,
-            "WITH_NATIVE_INSTRUCTIONS": self.options.with_native_instructions
+            "WITH_NATIVE_INSTRUCTIONS": self.options.with_native_instructions,
+            "WITH_SANITIZER": "False",
+            "WITH_GTEST": "False",
+            "ZLIBNG_ENABLE_TESTS": "False",
         }
