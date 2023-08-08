@@ -1142,7 +1142,7 @@ if(NOT DEFINED BUILD_SHARED_LIBS OR BUILD_SHARED_LIBS)
             # Match configure/make's behavior (i.e. don't use @rpath on mac when using absolute path).
             set_target_properties(zlib PROPERTIES INSTALL_NAME_DIR "@rpath/${CMAKE_INSTALL_FULL_LIBDIR}")
         else()
-            set_target_properties(zlib PROPERTIES INSTALL_NAME_DIR "@rpath/${CMAKE_INSTALL_LIBDIR}")
+            set_target_properties(zlib PROPERTIES INSTALL_NAME_DIR "@rpath")
         endif()
     endif()
     if(MSYS)
