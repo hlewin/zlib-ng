@@ -1138,7 +1138,7 @@ if(NOT DEFINED BUILD_SHARED_LIBS OR BUILD_SHARED_LIBS)
         if(NOT APPLE)
             set_target_properties(zlib PROPERTIES LINK_FLAGS
                 "-Wl,--version-script,\"${CMAKE_CURRENT_SOURCE_DIR}/zlib${SUFFIX}.map\"")
-        elseif(IS_ABSOLUTE "${CMAKE_INSTALL_LIBDIR}" OR NOT WITH_RPATH)
+        elseif(false)
             # Match configure/make's behavior (i.e. don't use @rpath on mac when using absolute path).
             set_target_properties(zlib PROPERTIES INSTALL_NAME_DIR "@rpath/${CMAKE_INSTALL_FULL_LIBDIR}")
         else()
