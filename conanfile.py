@@ -7,7 +7,7 @@ equired_conan_version = ">=1.33.0"
 
 class ZlibNgConan(ConanFile):
     name = "zlib-ng"
-    version = "2.1.3"
+    version = "2.1.4"
     
     description = "zlib data compression library for the next generation systems"
     url = "https://gitlab.worldiety.net/worldiety/customer/wdy/libriety/cpp/forks"
